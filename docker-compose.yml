@@ -72,6 +72,22 @@ services:
       options:
         max-size: 100m
 
+  iotagent-leshan:
+    image: dojot/iotagent-leshan:0.3.0-nightly20180423
+    restart: always
+    depends_on:
+      - device-manager
+      - kafka
+      - data-broker
+      - image-manager
+    ports:
+      - 5683:5683/udp
+      - 5693:5693/udp
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+
   gui:
     image: dojot/gui:0.3.0-nightly20180419
     restart: always
